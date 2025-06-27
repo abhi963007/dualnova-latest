@@ -181,6 +181,11 @@
       .form-content-wrapper{flex-direction:column;}
       .footer-nav-block{flex-direction:row;flex-wrap:wrap;gap:0.5rem 1rem;justify-content:center;}
       .footer-link-dot{display:none;}
+      
+      /* Hide pipe symbols on mobile */
+      .pipe-symbol {
+        display: none !important;
+      }
     /* hide Works & Pricing links globally */
     .nav-links-wrapper-v2 a[href="#Works"],
     .nav-links-wrapper-v2 a[href="#Pricng"],
@@ -526,22 +531,6 @@
                         <h3>50+ Happy Clients</h3>
                       </div>
                     </div>
-                    <div id="w-node-d7e06b0a-9603-a4f9-0b21-a49c119daf5d-07f9d3e4"
-                      class="benefit-card-04">
-                      <div class="benefit-card-image-block-04">
-                        <div class="benefit-card-lottie-04"
-                          data-w-id="7f5a26f9-5962-093c-e6f3-6d14302bb72d"
-                          data-animation-type="lottie"
-                          data-src="https://cdn.prod.website-files.com/6745b25e58afc09807f9d3d0/67501de230590f42b76b1822_benefit-lottie-04.lottie"
-                          data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0"
-                          data-renderer="svg" data-default-duration="0" data-duration="0"></div>
-                      </div>
-                      <div class="benefit-card-info-block-04">
-                        <h3>Quick Turnaround</h3>
-                        <div class="body-text-regular">Designs delivered in 2-3 days on average.
-                        </div>
-                      </div>
-                    </div>
                     <div class="benefit-card-05">
                       <div class="benefit-card-image-block-05">
                         <div class="lottie-animation"
@@ -768,7 +757,7 @@
               </div>
             </div>
           </div>
-        </section> -->
+        </section>
         <!-- <section id="Pricng" class="pricing">
           <div class="container">
             <div class="page-vertical-padding">
@@ -1445,8 +1434,8 @@
                   </a></div>
                 <div class="footer-cradit-block">
                   <span>Email: <a href="mailto:dualnovalabs@gmail.com">dualnovalabs@gmail.com</a></span>
-                    <span>| Phone: <a href="tel:+917306364765">+91&nbsp;7306364765</a>, <a href="tel:+919072783958">+91&nbsp;9072783958</a></span>
-                    <span>| Kochi, Kerala, India</span>
+                    <span><span class="pipe-symbol">|</span> Phone: <a href="tel:+917306364765">+91&nbsp;7306364765</a>, <a href="tel:+919072783958">+91&nbsp;9072783958</a></span>
+                    <span><span class="pipe-symbol">|</span> Kochi, Kerala, India</span>
                 </div>
               </div>
             </div>
