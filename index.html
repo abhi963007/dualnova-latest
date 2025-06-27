@@ -286,7 +286,7 @@
                     <div class="hero-item-text-block">
                       <div class="body-text-large">Mobile Dev</div>
                     </div>
-                  </a><a data-w-id="62970728-0f8f-2b43-4734-208153032a66" href="#Services"
+                  </a><a data-w-id="62970728-0f8f-2b43-4734-208153032a66" href="#FullStack"
                     class="hero-item-block background-image-03 w-inline-block">
                     <div class="hero-item-text-block">
                       <div class="body-text-large">Full-Stack</div>
@@ -416,7 +416,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="service-card service-card-v3">
+                    <div class="service-card service-card-v3" id="FullStack">
                       <div class="service-card-title-block">
                         <h3>Full-Stack Solutions</h3>
                         <div class="text-opecity-90">End-to-end development from frontend interfaces to backend infrastructure for complete digital solutions.</div>
@@ -459,13 +459,13 @@
                       <div class="service-card-badges-block">
                         <div class="service-card-badge-block"><div>AI</div></div>
                         <div class="service-card-badge-block">
-                          <div>Coding</div>
+                          <div class="text-opecity-70">Coding</div>
                         </div>
                         <div class="service-card-badge-block">
-                          <div>Data Analytics</div>
+                          <div class="text-opecity-70">Data Analytics</div>
                         </div>
                         <div class="service-card-badge-block">
-                          <div>Effect</div>
+                          <div class="text-opecity-70">Effect</div>
                         </div>
                       </div>
                     </div>
@@ -1485,6 +1485,22 @@
   </script>
   <style>
     .reveal-word { display: inline-block; }
+    
+    /* Add smooth scrolling behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Adjust scroll position to account for fixed header */
+    #FullStack {
+      scroll-margin-top: 100px;
+    }
+    
+    @media (max-width: 767px) {
+      #FullStack {
+        scroll-margin-top: 70px;
+      }
+    }
   </style>
 </body>
 
