@@ -1,0 +1,23 @@
+{
+  "name": "tets-web-site-for-dual-nova",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettify": "js-beautify -r index.html --type html --indent-size 2 --wrap-line-length 100 --indent-inner-html true",
+    "prettify-webfont": "js-beautify -r js/webfont.js --type js --indent-size 2",
+    "prettify-webflow": "js-beautify -r js/webflow.41fa17ad42c7cb9505e441a03d59c0e3.js --type js --indent-size 2",
+    "prettify-jquery": "js-beautify -r js/jquery-3.5.1.min.dc5e7f18c8.js --type js --indent-size 2",
+    "prettify-css": "js-beautify -r css/designorbitstudio.webflow.f75a7b858.min.css --type css --indent-size 2",
+    "prettify-all-js-css": "npm run prettify-webfont && npm run prettify-webflow && npm run prettify-jquery && npm run prettify-css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "js-beautify": "^1.15.4",
+    "prettier": "^3.6.2",
+    "tidy-html5": "^0.1.1"
+  }
+}
