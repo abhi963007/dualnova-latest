@@ -1933,25 +1933,44 @@
         anchor.addEventListener('click', function(e) {
           // Only process if the href is not just "#" (empty anchor)
           if(this.getAttribute('href') !== '#') {
-            e.preventDefault();
-            
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
-            
-            if(targetElement) {
-              // Smooth scroll to target
-              targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-              });
-              
-              // Update URL hash without jumping
-              history.pushState(null, null, targetId);
-              
-              // Close mobile menu if open
-              const navOverlay = document.querySelector('.w-nav-overlay');
-              if (navOverlay && window.innerWidth < 992) {
-                document.querySelector('.nav-menu-button').click();
+            // Only apply special behavior for mobile menu
+            const navMenu = document.querySelector('.nav-menu-block');
+            const navButton = document.querySelector('.nav-menu-button');
+            const navOverlay = document.querySelector('.w-nav-overlay');
+            const isMobile = window.innerWidth < 992;
+            // Only if menu is open and nav link is inside mobile menu
+            const isInMobileMenu = navMenu && navMenu.classList.contains('w--open') && navMenu.contains(this);
+            if (isMobile && isInMobileMenu) {
+              e.preventDefault();
+              // Animate menu closing
+              navButton.classList.remove('w--open');
+              navMenu.classList.remove('w--open');
+              document.body.style.overflow = '';
+              // Wait for curtain animation to finish (match CSS: 600ms + buffer)
+              setTimeout(() => {
+                if (navMenu) navMenu.style.display = 'none';
+                if (navOverlay) navOverlay.style.display = 'none';
+                // Now scroll to target
+                if(targetElement) {
+                  targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                  });
+                  // Update URL hash without jumping
+                  history.pushState(null, null, targetId);
+                }
+              }, 700);
+            } else {
+              // Desktop or not in mobile menu: default smooth scroll
+              e.preventDefault();
+              if(targetElement) {
+                targetElement.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+                history.pushState(null, null, targetId);
               }
             }
           }
