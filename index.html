@@ -1022,6 +1022,30 @@
       }
     }
   </style>
+  <!-- FAQ Accordion styles -->
+  <style>
+    /* FAQ accordion fix */
+    .faq-answer-block{
+      overflow:hidden;
+      height:0;
+      transition:height 0.4s ease;
+    }
+    .faq-answer-wrapper{
+      opacity:0;
+      transition:opacity 0.4s ease;
+    }
+    .faq-item.w--open .faq-answer-wrapper{
+      opacity:1;
+    }
+    .faq-item.w--open .faq-answer-block{
+      height:auto;
+    }
+    .faq-answer-block ul{
+      list-style:none;
+      padding-left:0;
+      margin:0;
+    }
+  </style>
 </head>
 
   <body>
@@ -1939,6 +1963,7 @@
       
       // Fix mobile menu button
       fixMobileMenu();
+      fixFAQAccordion();
       
       // Enhance testimonial slider functionality
       enhanceTestimonialSlider();
@@ -2016,6 +2041,74 @@
       });
     }
     
+    // Function to fix FAQ accordion
+    function fixFAQAccordion() {
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const trigger = item.querySelector('.faq-question-trigger');
+        const answerBlock = item.querySelector('.faq-answer-block');
+        const answerWrapper = item.querySelector('.faq-answer-wrapper');
+        const icon = item.querySelector('.faq-icon');
+        if (!trigger || !answerBlock || !answerWrapper) return;
+
+        // ensure initial state
+        answerBlock.style.height = '0px';
+        answerWrapper.style.opacity = '0';
+
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          const isOpen = item.classList.contains('w--open');
+
+          // toggle open state using Webflow's w--open class
+          if (isOpen) {
+            // already open -> close
+            item.classList.remove('w--open');
+            answerBlock.style.height = '0px';
+            answerWrapper.style.opacity = '0';
+            if (icon) icon.style.transform = 'rotate(0deg)';
+          } else {
+            // close any other open items first
+            document.querySelectorAll('.faq-item.w--open').forEach(other=>{
+              other.classList.remove('w--open');
+              const ob = other.querySelector('.faq-answer-block');
+              const ow = other.querySelector('.faq-answer-wrapper');
+              const oi = other.querySelector('.faq-icon');
+              if (ob) ob.style.height='0px';
+              if (ow) ow.style.opacity='0';
+              if (oi) oi.style.transform='rotate(0deg)';
+            });
+
+            // open this item
+            item.classList.add('w--open');
+            answerBlock.style.height = answerWrapper.scrollHeight + 'px';
+            answerWrapper.style.opacity = '1';
+            if (icon) icon.style.transform = 'rotate(45deg)';
+          }
+            // close other items
+            faqItems.forEach(other => {
+              if (other !== item) {
+                other.classList.remove('open');
+                const ob = other.querySelector('.faq-answer-block');
+                const ow = other.querySelector('.faq-answer-wrapper');
+                const oi = other.querySelector('.faq-icon');
+                if (ob) ob.style.height = '0px';
+                if (ow) ow.style.opacity = '0';
+                if (oi) oi.style.transform = 'rotate(0deg)';
+              }
+            });
+
+            answerBlock.style.height = answerWrapper.scrollHeight + 'px';
+            answerWrapper.style.opacity = '1';
+            if (icon) icon.style.transform = 'rotate(45deg)';
+          } else {
+            answerBlock.style.height = '0px';
+            answerWrapper.style.opacity = '0';
+            if (icon) icon.style.transform = 'rotate(0deg)';
+          }
+        });
+      });
+    }
+
     // Function to enhance testimonial slider and arrow functionality
     function enhanceTestimonialSlider() {
       const slider = document.querySelector('.review-slider');
