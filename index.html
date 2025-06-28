@@ -742,7 +742,7 @@
                   </div>
                   <div class="review-slider-wrapper">
                     <div data-delay="4000" data-animation="outin" class="review-slider w-slider"
-                      data-autoplay="false" data-easing="ease" data-hide-arrows="false"
+                      data-autoplay="true" data-easing="ease" data-hide-arrows="false"
                       data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="3"
                       data-duration="500" data-infinite="true">
                       <div class="review-slider-mask w-slider-mask">
@@ -1269,7 +1269,71 @@
           section.style.scrollMarginTop = newNavHeight + 'px';
         });
       });
+      
+      // Enhance testimonial slider functionality
+      enhanceTestimonialSlider();
     });
+    
+    // Function to enhance testimonial slider and arrow functionality
+    function enhanceTestimonialSlider() {
+      const slider = document.querySelector('.review-slider');
+      if (!slider) return;
+      
+      const leftArrow = slider.querySelector('.w-slider-arrow-left');
+      const rightArrow = slider.querySelector('.w-slider-arrow-right');
+      
+      // Add enhanced click handlers to arrows
+      if (leftArrow) {
+        leftArrow.addEventListener('click', function(e) {
+          // Add visual feedback
+          this.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            this.style.transform = 'scale(1)';
+          }, 200);
+        });
+      }
+      
+      if (rightArrow) {
+        rightArrow.addEventListener('click', function(e) {
+          // Add visual feedback
+          this.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            this.style.transform = 'scale(1)';
+          }, 200);
+        });
+      }
+      
+      // Make sure all testimonial items are visible
+      const testimonialItems = document.querySelectorAll('.review-slider-item-card');
+      testimonialItems.forEach(item => {
+        if (item.style.opacity === '0') {
+          item.style.opacity = '1';
+        }
+      });
+      
+      // Add hover effect to arrows
+      [leftArrow, rightArrow].forEach(arrow => {
+        if (!arrow) return;
+        
+        arrow.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.1)';
+        });
+        
+        arrow.addEventListener('mouseleave', function() {
+          this.style.transform = 'scale(1)';
+        });
+        
+        // Improve accessibility
+        arrow.setAttribute('tabindex', '0');
+        arrow.setAttribute('role', 'button');
+        arrow.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+          }
+        });
+      });
+    }
   </script>
 </body>
 
