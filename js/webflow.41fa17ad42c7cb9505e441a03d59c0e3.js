@@ -1091,22 +1091,6 @@ __p+='`), Q
           h = n.attr("data-wf-domain") || "";
         /\.webflow\.io$/i.test(h) && o.hostname !== h && (d = !0), d && !s && (f = f || p(), g(), setTimeout(g, 500), e(r).off(l, u).on(l, u))
       };
-
-      function u() {
-        var d = r.fullScreen || r.mozFullScreen || r.webkitIsFullScreen || r.msFullscreenElement || !!r.webkitFullscreenElement;
-        e(f).attr("style", d ? "display: none !important;" : "")
-      }
-
-      function p() {
-        var d = e('<a class="w-webflow-badge"></a>').attr("href", "https://webflow.com?utm_campaign=brandjs"),
-          h = e("<img>").attr("src", "https://d3e54v103j8qbb.cloudfront.net/img/webflow-badge-icon-d2.89e12c322e.svg").attr("alt", "").css({
-            marginRight: "4px",
-            width: "26px"
-          }),
-          m = e("<img>").attr("src", "https://d3e54v103j8qbb.cloudfront.net/img/webflow-badge-text-d2.c82cec3b78.svg").attr("alt", "Made in Webflow");
-        return d.append(h, m), d[0]
-      }
-
       function g() {
         var d = i.children(a),
           h = d.length && d.get(0) === f,
