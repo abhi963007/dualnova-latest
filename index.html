@@ -186,10 +186,231 @@
         display: none !important;
       }
     /* hide Works & Pricing links globally */
+    .nav-menu-block{z-index:9999 !important;}
     .nav-links-wrapper-v2 a[href="#Works"],
     .nav-links-wrapper-v2 a[href="#Pricng"],
     a[href="#Works"],
     a[href="#Pricng"]{display:none !important;}
+    
+    /* Fix mobile menu */
+    .w-nav-button {
+      float: right;
+      cursor: pointer;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      tap-highlight-color: rgba(0,0,0,0);
+      -webkit-user-select: none;
+      user-select: none;
+      padding: 18px;
+      font-size: 24px;
+      display: none;
+      position: relative;
+    }
+    
+    @media screen and (max-width: 991px) {
+      .w-nav[data-collapse=medium] .w-nav-button {
+        display: block;
+      }
+      
+      .nav-menu-button {
+        z-index: 7;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        overflow: hidden;
+      }
+      
+      /* Mobile menu animation and X mark */
+      .nav-menu-block {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.95);
+        transition: transform 0.6s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9990;
+        transform: translateY(-100%);
+        transform-origin: top;
+      }
+      
+      .nav-menu-block.w--open {
+        transform: translateY(0);
+        top: 0;
+      }
+      
+      /* Create curtain effect with pseudo-element */
+      .nav-menu-block:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+        z-index: -1;
+      }
+      
+      .nav-menu-block.w--open:before {
+        transform: scaleY(1);
+      }
+      
+      /* X mark for close button */
+      .nav-menu-button.w--open .nav-menu-lottie {
+        display: none;
+      }
+      
+      .nav-menu-button.w--open:before,
+      .nav-menu-button.w--open:after {
+        content: '';
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background-color: white;
+        top: 50%;
+        left: 50%;
+        transition: transform 0.3s ease;
+      }
+      
+      .nav-menu-button.w--open:before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      
+      .nav-menu-button.w--open:after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+      
+      /* Style for nav links in mobile */
+      .nav-menu-block-inner {
+        width: 100%;
+        padding: 20px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        transition-delay: 0.3s;
+      }
+      
+      .nav-menu-block.w--open .nav-menu-block-inner {
+        opacity: 1;
+      }
+      
+      .nav-links-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+      }
+      
+      .nav-link {
+        margin: 10px 0;
+        color: white;
+        font-size: 24px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+      
+      .nav-menu-block.w--open .nav-link:nth-child(1) {
+        transition-delay: 0.3s;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .nav-menu-block.w--open .nav-link:nth-child(2) {
+        transition-delay: 0.4s;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .nav-menu-block.w--open .nav-link:nth-child(3) {
+        transition-delay: 0.5s;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .nav-menu-block.w--open .nav-link:nth-child(4) {
+        transition-delay: 0.6s;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .nav-menu-block.w--open .nav-link:nth-child(5) {
+        transition-delay: 0.7s;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* Improve curtain effect */
+      .nav-menu-block {
+        clip-path: inset(0 0 100% 0);
+        transition: clip-path 0.6s cubic-bezier(0.77, 0.2, 0.05, 1.0), transform 0.6s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+      }
+      
+      .nav-menu-block.w--open {
+        clip-path: inset(0 0 0 0);
+      }
+      
+      /* Add animation for CTA button */
+      .nav-cta-block-mobile {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        transition-delay: 0.8s;
+      }
+      
+      .nav-menu-block.w--open .nav-cta-block-mobile {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .w-nav-overlay {
+      position: absolute;
+      overflow: hidden;
+      display: none;
+      top: 100%;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 9998 !important;
+    }
+    
+    .w--nav-menu-open {
+      display: block !important;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #000;
+      text-align: center;
+      overflow: visible;
+      min-width: 200px;
+      z-index: 9999 !important;
+    }
+    
+    .w--nav-link-open {
+      display: block;
+      position: relative;
+    }
+    
+    @media screen and (max-width: 991px) {
+      .nav-menu-block {
+        background-color: #000;
+        padding: 20px;
+        z-index: 9999 !important;
+      }
+      
+      .nav-menu-button {
+        display: block !important;
+        z-index: 10000 !important;
+        position: relative;
+      }
+    }
     }
   </style>
   
@@ -359,6 +580,448 @@
       z-index: 5;
     }
   </style>
+  <style>
+    /* Improved media queries for responsive navigation */
+    /* Base styles for navigation elements */
+    .nav-menu-button {
+      z-index: 10000;
+      position: relative;
+    }
+    
+    /* Ensure proper display across all screen sizes */
+    @media screen and (min-width: 992px) {
+      .nav-menu-button {
+        display: none !important;
+      }
+      
+      .nav-menu-block {
+        display: flex !important;
+        position: static;
+        background-color: transparent;
+        transform: none;
+        clip-path: none;
+        height: auto;
+        opacity: 1;
+      }
+    }
+    
+    @media screen and (max-width: 991px) {
+      /* Mobile menu button styles */
+      .nav-menu-button {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        position: relative;
+        cursor: pointer;
+        z-index: 10000;
+        float: right;
+      }
+      
+      /* Ensure the X mark is visible and properly positioned */
+      .nav-menu-button.w--open {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+      }
+      
+      /* Mobile menu styles */
+      .nav-menu-block {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.95);
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9990;
+        transform: translateY(-100%);
+        transform-origin: top;
+        clip-path: inset(0 0 100% 0);
+        transition: clip-path 0.6s cubic-bezier(0.77, 0.2, 0.05, 1.0), 
+                    transform 0.6s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+      }
+      
+      /* Open state for mobile menu */
+      .nav-menu-block.w--open {
+        transform: translateY(0);
+        clip-path: inset(0 0 0 0);
+        display: flex !important;
+      }
+      
+      /* X mark for close button */
+      .nav-menu-button.w--open .nav-menu-lottie {
+        display: none;
+      }
+      
+      .nav-menu-button.w--open:before,
+      .nav-menu-button.w--open:after {
+        content: '';
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background-color: white;
+        top: 50%;
+        left: 50%;
+        transition: transform 0.3s ease;
+      }
+      
+      .nav-menu-button.w--open:before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      
+      .nav-menu-button.w--open:after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+      
+      /* Mobile menu content */
+      .nav-menu-block-inner {
+        width: 100%;
+        padding: 20px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        transition-delay: 0.3s;
+      }
+      
+      .nav-menu-block.w--open .nav-menu-block-inner {
+        opacity: 1;
+      }
+      
+      /* Adjust mobile menu position and style */
+      .nav-menu-block {
+        padding-top: 80px;
+      }
+      
+      .nav-menu-top-block {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+      }
+      
+      /* Navigation links */
+      .nav-links-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+      }
+      
+      .nav-link {
+        margin: 10px 0;
+        color: white;
+        font-size: 24px !important;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        padding: 15px 0;
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+      
+      /* Staggered animation for nav links */
+      .nav-menu-block.w--open .nav-link:nth-child(1) {
+        transition-delay: 0.3s;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .nav-menu-block.w--open .nav-link:nth-child(2) {
+        transition-delay: 0.4s;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .nav-menu-block.w--open .nav-link:nth-child(3) {
+        transition-delay: 0.5s;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .nav-menu-block.w--open .nav-link:nth-child(4) {
+        transition-delay: 0.6s;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .nav-menu-block.w--open .nav-link:nth-child(5) {
+        transition-delay: 0.7s;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* CTA button animation */
+      .nav-cta-block-mobile {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        transition-delay: 0.8s;
+        margin-top: 40px;
+      }
+      
+      .nav-menu-block.w--open .nav-cta-block-mobile {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* Overlay styles */
+      .w-nav-overlay {
+        position: fixed !important;
+        top: 0 !important;
+        height: 100vh !important;
+        background-color: transparent !important;
+        z-index: 9989 !important;
+      }
+    }
+    
+    /* Additional adjustments for smaller screens */
+    @media screen and (max-width: 767px) {
+      .nav-menu-button {
+        width: 36px;
+        height: 36px;
+      }
+      
+      .nav-link {
+        font-size: 20px !important;
+        padding: 12px 0;
+      }
+    }
+    
+    @media screen and (max-width: 479px) {
+      .nav-menu-button {
+        width: 32px;
+        height: 32px;
+      }
+      
+      .nav-menu-button.w--open {
+        top: 15px;
+        right: 15px;
+      }
+      
+      .nav-menu-top-block {
+        top: 15px;
+        left: 15px;
+      }
+    }
+  </style>
+  
+  <!-- Loading Animation CSS -->
+  <style>
+    /* Loading Animation Styles */
+    @keyframes dropAndShift {
+      0% {
+        transform: translate(0px, 15px);
+      }
+      16.67% {
+        transform: translate(80px, 13px);
+      }
+      33.34% {
+        transform: translate(40px, 10px);
+      }
+      50.01% {
+        transform: translate(40px, -30px);
+      }
+      66.68% {
+        transform: translate(40px, 55px);
+      }
+      83.35% {
+        transform: translate(40px, 10px);
+      }
+      100% {
+        transform: translate(0px, 15px);
+      }
+    }
+    @keyframes bubbleGlint {
+      0% {
+        top: 3px;
+        left: 4px;
+        opacity: 0;
+      }
+      8.335% {
+        top: 6px;
+        left: 6px;
+        opacity: 0.5;
+      }
+      16.67% {
+        top: 3px;
+        left: 4px;
+        opacity: 0;
+      }
+      33.34% {
+        top: 3px;
+        left: 4px;
+        opacity: 0.5;
+      }
+      50.01% {
+        top: 3px;
+        left: 4px;
+        opacity: 0;
+      }
+      58.345% {
+        top: 6px;
+        left: 6px;
+        opacity: 0.5;
+      }
+      66.68% {
+        top: 3px;
+        left: 4px;
+        opacity: 0;
+      }
+      83.35% {
+        top: 6px;
+        left: 6px;
+        opacity: 0.5;
+      }
+      100% {
+        top: 3px;
+        left: 4px;
+        opacity: 0;
+      }
+    }
+
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    }
+
+    .Strich1 {
+      position: absolute;
+      width: 130px;
+      height: 50px;
+      background: #000;
+      border-radius: 25px;
+      transform: rotate(45deg);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+    .Strich2 {
+      position: absolute;
+      width: 130px;
+      height: 50px;
+      background: #000;
+      border-radius: 25px;
+      transform: rotate(-90deg);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    .bubble {
+      position: absolute;
+      top: 0;
+      left: 15px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffb3c1, #e64980, #ff8787);
+      animation: dropAndShift 5s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    .bubble1 {
+      position: absolute;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle at 30% 30%, #edb3ff, #ac49e6, #fb87ff);
+      border-radius: 50%;
+      left: 8px;
+      animation: dropAndShift 6s ease-in-out infinite;
+      z-index: 2;
+    }
+    .bubble2 {
+      position: absolute;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle at 30% 30%, #b3d8ff, #4963e6, #87a7ff);
+      border-radius: 50%;
+      left: 12px;
+      animation: dropAndShift 4s ease-in-out infinite;
+      z-index: 3;
+    }
+    .bubble3 {
+      position: absolute;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle at 30% 30%, #b3ffbc, #35a32f, #75ba61);
+      border-radius: 50%;
+      left: 10px;
+      animation: dropAndShift 7s ease-in-out infinite;
+      z-index: 4;
+    }
+    .bubble4 {
+      position: absolute;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle at 30% 30%, #ffb3c1, #e64980, #ff8787);
+      border-radius: 50%;
+      left: 5px;
+      animation: dropAndShift 5.5s ease-in-out infinite;
+      z-index: 5;
+    }
+  </style>
+  <style>
+    /* Additional mobile menu styles */
+    @media screen and (max-width: 991px) {
+      .nav-menu-button {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        position: relative;
+        cursor: pointer;
+        z-index: 10000;
+      }
+      
+      /* Ensure the X mark is visible */
+      .nav-menu-button.w--open {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+      }
+      
+      /* Adjust mobile menu position and style */
+      .nav-menu-block {
+        padding-top: 80px;
+      }
+      
+      .nav-menu-top-block {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+      }
+      
+      /* Ensure nav links are visible and properly spaced */
+      .nav-link {
+        padding: 15px 0;
+        font-size: 24px !important;
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+      
+      /* Make sure CTA buttons are visible */
+      .nav-cta-block-mobile {
+        margin-top: 40px;
+      }
+    }
+  </style>
 </head>
 
   <body>
@@ -413,7 +1076,7 @@
           </nav>
           <div class="nav-cta-block"><a href="#CTA" class="button-primary w-button">Book a Call</a>
           </div>
-          <div class="nav-menu-button w-nav-button">
+          <div class="nav-menu-button w-nav-button" aria-label="menu" role="button" tabindex="0" aria-controls="w-nav-overlay-0" aria-haspopup="menu" aria-expanded="false">
             <div data-is-ix2-target="1" class="nav-menu-lottie"
               data-w-id="fa16df0d-10e2-f613-51d7-52da510cab13" data-animation-type="lottie"
               data-src="https://cdn.prod.website-files.com/6745b25e58afc09807f9d3d0/675045a4684b61ee9a64dd08_nav-lottie.lottie"
@@ -741,10 +1404,10 @@
                     <h2>What people say about us</h2>
                   </div>
                   <div class="review-slider-wrapper">
-                    <div data-delay="4000" data-animation="outin" class="review-slider w-slider"
-                      data-autoplay="true" data-easing="ease" data-hide-arrows="false"
+                    <div data-delay="3000" data-animation="slide" class="review-slider w-slider"
+                      data-autoplay="true" data-easing="ease-in-out" data-hide-arrows="false"
                       data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="3"
-                      data-duration="500" data-infinite="true">
+                      data-duration="400" data-infinite="true">
                       <div class="review-slider-mask w-slider-mask">
                         <div class="review-slider-item w-slide">
                           <div data-w-id="ab44f0ec-1285-2921-ff2f-5537099f651d" style="opacity:0"
@@ -789,9 +1452,7 @@
                               src="images/674e93da2d53ac82c6704a7a_review-slider-quote-icon.svg"
                               loading="lazy" alt="Quote icon" class="review-slider-quote-icon">
                             <div class="review-text-block">
-                              <p class="body-text-extra-large">"Working with DesignOrbit felt like
-                                having an in-house team. They were collaborative, creative, and
-                                their new branding has been a game-changer for us."</p>
+                              <p class="body-text-extra-large">"Dual Nova Lab's full-stack expertise transformed our outdated systems into a modern, efficient platform. Their collaborative approach and technical knowledge made the entire process smooth and successful."</p>
                             </div>
                             <div class="review-author-block"><img
                                 src="images/674e9607324b7e64693a1c50_review-img-03.avif"
@@ -1257,6 +1918,12 @@
               
               // Update URL hash without jumping
               history.pushState(null, null, targetId);
+              
+              // Close mobile menu if open
+              const navOverlay = document.querySelector('.w-nav-overlay');
+              if (navOverlay && window.innerWidth < 992) {
+                document.querySelector('.nav-menu-button').click();
+              }
             }
           }
         });
@@ -1270,9 +1937,84 @@
         });
       });
       
+      // Fix mobile menu button
+      fixMobileMenu();
+      
       // Enhance testimonial slider functionality
       enhanceTestimonialSlider();
     });
+    
+    // Function to fix mobile menu button
+    function fixMobileMenu() {
+      const menuButton = document.querySelector('.nav-menu-button');
+      if (!menuButton) return;
+      
+      // Ensure the button is clickable
+      menuButton.style.zIndex = '10000';
+      menuButton.style.position = 'relative';
+      
+      // Add click handler if Webflow's isn't working
+      menuButton.addEventListener('click', function(e) {
+        // Toggle menu open class for visual feedback
+        this.classList.toggle('w--open');
+        
+        // Find the menu element
+        const menu = document.querySelector('.nav-menu-block');
+        const overlay = document.querySelector('.w-nav-overlay');
+        
+        if (menu) {
+          if (this.classList.contains('w--open')) {
+            // Open menu with curtain effect
+            menu.style.display = 'flex';
+            
+            // Trigger reflow to ensure animation plays
+            void menu.offsetWidth;
+            
+            menu.classList.add('w--open');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            
+            if (overlay) overlay.style.display = 'block';
+          } else {
+            // Close menu with reverse curtain effect
+            menu.classList.remove('w--open');
+            document.body.style.overflow = ''; // Re-enable scrolling
+            
+            // Wait for animation to complete before hiding menu
+            setTimeout(() => {
+              if (!this.classList.contains('w--open')) {
+                menu.style.display = 'none';
+                if (overlay) overlay.style.display = 'none';
+              }
+            }, 800); // Match the animation duration (600ms) plus a little buffer
+          }
+        }
+      });
+      
+      // Fix for window resize issues
+      window.addEventListener('resize', function() {
+        const menu = document.querySelector('.nav-menu-block');
+        const menuButton = document.querySelector('.nav-menu-button');
+        
+        // Reset menu styles when switching from mobile to desktop
+        if (window.innerWidth >= 992) {
+          if (menu) {
+            menu.style.display = '';
+            menu.classList.remove('w--open');
+            menu.style.transform = '';
+            menu.style.clipPath = '';
+          }
+          
+          if (menuButton) {
+            menuButton.classList.remove('w--open');
+            menuButton.style.position = 'relative';
+            menuButton.style.top = '';
+            menuButton.style.right = '';
+          }
+          
+          document.body.style.overflow = '';
+        }
+      });
+    }
     
     // Function to enhance testimonial slider and arrow functionality
     function enhanceTestimonialSlider() {
@@ -1281,12 +2023,21 @@
       
       const leftArrow = slider.querySelector('.w-slider-arrow-left');
       const rightArrow = slider.querySelector('.w-slider-arrow-right');
+      const slides = document.querySelectorAll('.review-slider-item');
       
-      // Add enhanced click handlers to arrows
+      // Make all testimonial items visible
+      const testimonialItems = document.querySelectorAll('.review-slider-item-card');
+      testimonialItems.forEach(item => {
+        if (item.style.opacity === '0') {
+          item.style.opacity = '1';
+        }
+      });
+      
+      // Add enhanced click handlers to arrows with more dynamic animation
       if (leftArrow) {
         leftArrow.addEventListener('click', function(e) {
           // Add visual feedback
-          this.style.transform = 'scale(0.95)';
+          this.style.transform = 'scale(0.95) translateX(-5px)';
           setTimeout(() => {
             this.style.transform = 'scale(1)';
           }, 200);
@@ -1296,20 +2047,12 @@
       if (rightArrow) {
         rightArrow.addEventListener('click', function(e) {
           // Add visual feedback
-          this.style.transform = 'scale(0.95)';
+          this.style.transform = 'scale(0.95) translateX(5px)';
           setTimeout(() => {
             this.style.transform = 'scale(1)';
           }, 200);
         });
       }
-      
-      // Make sure all testimonial items are visible
-      const testimonialItems = document.querySelectorAll('.review-slider-item-card');
-      testimonialItems.forEach(item => {
-        if (item.style.opacity === '0') {
-          item.style.opacity = '1';
-        }
-      });
       
       // Add hover effect to arrows
       [leftArrow, rightArrow].forEach(arrow => {
@@ -1317,6 +2060,7 @@
         
         arrow.addEventListener('mouseenter', function() {
           this.style.transform = 'scale(1.1)';
+          this.style.transition = 'all 0.3s ease';
         });
         
         arrow.addEventListener('mouseleave', function() {
@@ -1333,6 +2077,17 @@
           }
         });
       });
+      
+      // Force opacity to 1 for all slides after a short delay
+      setTimeout(() => {
+        slides.forEach(slide => {
+          const card = slide.querySelector('.review-slider-item-card');
+          if (card) {
+            card.style.opacity = '1';
+            card.style.transition = 'opacity 0.5s ease-in-out';
+          }
+        });
+      }, 100);
     }
   </script>
 </body>
