@@ -193,9 +193,189 @@
     a[href="#Pricng"]{display:none !important;}
     }
   </style>
+  
+  <!-- Loading Animation CSS -->
+  <style>
+    /* Loading Animation Styles */
+    @keyframes dropAndShift {
+      0% {
+        transform: translate(0px, 15px);
+      }
+      16.67% {
+        transform: translate(80px, 13px);
+      }
+      33.34% {
+        transform: translate(40px, 10px);
+      }
+      50.01% {
+        transform: translate(40px, -30px);
+      }
+      66.68% {
+        transform: translate(40px, 55px);
+      }
+      83.35% {
+        transform: translate(40px, 10px);
+      }
+      100% {
+        transform: translate(0px, 15px);
+      }
+    }
+    @keyframes bubbleGlint {
+      0% {
+        top: 3px;
+        left: 4px;
+        opacity: 0;
+      }
+      8.335% {
+        top: 6px;
+        left: 6px;
+        opacity: 0.5;
+      }
+      16.67% {
+        top: 3px;
+        left: 4px;
+        opacity: 0;
+      }
+      33.34% {
+        top: 3px;
+        left: 4px;
+        opacity: 0.5;
+      }
+      50.01% {
+        top: 3px;
+        left: 4px;
+        opacity: 0;
+      }
+      58.345% {
+        top: 6px;
+        left: 6px;
+        opacity: 0.5;
+      }
+      66.68% {
+        top: 3px;
+        left: 4px;
+        opacity: 0;
+      }
+      83.35% {
+        top: 6px;
+        left: 6px;
+        opacity: 0.5;
+      }
+      100% {
+        top: 3px;
+        left: 4px;
+        opacity: 0;
+      }
+    }
+
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    }
+
+    .Strich1 {
+      position: absolute;
+      width: 130px;
+      height: 50px;
+      background: #000;
+      border-radius: 25px;
+      transform: rotate(45deg);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+    .Strich2 {
+      position: absolute;
+      width: 130px;
+      height: 50px;
+      background: #000;
+      border-radius: 25px;
+      transform: rotate(-90deg);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    .bubble {
+      position: absolute;
+      top: 0;
+      left: 15px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffb3c1, #e64980, #ff8787);
+      animation: dropAndShift 5s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    .bubble1 {
+      position: absolute;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle at 30% 30%, #edb3ff, #ac49e6, #fb87ff);
+      border-radius: 50%;
+      left: 8px;
+      animation: dropAndShift 6s ease-in-out infinite;
+      z-index: 2;
+    }
+    .bubble2 {
+      position: absolute;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle at 30% 30%, #b3d8ff, #4963e6, #87a7ff);
+      border-radius: 50%;
+      left: 12px;
+      animation: dropAndShift 4s ease-in-out infinite;
+      z-index: 3;
+    }
+    .bubble3 {
+      position: absolute;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle at 30% 30%, #b3ffbc, #35a32f, #75ba61);
+      border-radius: 50%;
+      left: 10px;
+      animation: dropAndShift 7s ease-in-out infinite;
+      z-index: 4;
+    }
+    .bubble4 {
+      position: absolute;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle at 30% 30%, #ffb3c1, #e64980, #ff8787);
+      border-radius: 50%;
+      left: 5px;
+      animation: dropAndShift 5.5s ease-in-out infinite;
+      z-index: 5;
+    }
+  </style>
 </head>
 
   <body>
+    <!-- Loading Animation -->
+    <div id="loading-screen">
+      <div class="Strich1">
+        <div class="Strich2">
+          <div class="bubble"></div>
+          <div class="bubble1"></div>
+          <div class="bubble2"></div>
+          <div class="bubble3"></div>
+          <div class="bubble4"></div>
+        </div>
+      </div>
+    </div>
+    
     <div class="page-wrapper">
       <div class="cursor-wrapper">
         <div data-w-id="52a5206a-6576-6b16-a1b2-c38fa7cbde65" class="cursor"></div>
@@ -550,480 +730,6 @@
             </div>
           </div>
         </section>
-        <!-- <section id="Works" class="works">
-          <div class="container">
-            <div class="page-vertical-padding">
-              <div class="section-padding-large">
-                <div class="works-content-wrapper">
-                  <div class="section-top-block">
-                    <div class="works-top-block">
-                      <div class="section-caption">
-                        <div class="section-caption-text">Works</div>
-                      </div><a href="#Works" class="button-secondary w-button">See Plan</a>
-                    </div>
-                    <div class="works-title-block">
-                      <h2>We create emotionally resonant stories for our audience.</h2>
-                    </div>
-                  </div>
-                  <div class="works-cards-block"><a data-w-id="4f34442f-6fde-e2c4-1777-344bca836714"
-                      style="opacity:0" href="https://grabui.com/product/floyd-miles-s-portfolio"
-                      class="work-card w-inline-block">
-                      <div class="work-image-block"><img
-                          src="images/67556ffa25260743610aa99a_work-img-01.avif" loading="lazy"
-                          alt="Our work preview image." class="work-image"></div>
-                      <div class="work-card-text-content-block">
-                        <div class="work-card-top-block"><img
-                            src="images/674ebc671f72bb95132463bb_work-card-logo-01.svg"
-                            loading="lazy" alt="Clients company logo" class="work-card-logo-v1">
-                          <p class="text-opecity-80">We worked closely with the CSS Design Awards
-                            team to create a fresh, modern brand identity that aligns with their
-                            vision and resonates with their target audience.</p>
-                        </div>
-                        <div class="work-info-block">
-                          <div class="work-info-item-block">
-                            <div>Client</div>
-                            <div>CSS Design Awards</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                          <div class="work-info-item-block">
-                            <div>Role</div>
-                            <div>UI.UX / Branding</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                          <div class="work-info-item-block">
-                            <div>Date</div>
-                            <div>10 . 14 . 2024</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                          <div class="work-info-item-block">
-                            <div>Client Rating</div>
-                            <div>4.9/5</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                        </div>
-                        <div class="work-category-block">
-                          <div class="work-category-item">
-                            <div class="work-category-item-text">AI &amp; ML</div>
-                          </div>
-                          <div class="work-category-item">
-                            <div class="work-category-item-text">Consulting</div>
-                          </div>
-                          <div class="work-category-item">
-                            <div class="work-category-item-text">Data Analytics</div>
-                          </div>
-                        </div>
-                      </div>
-                    </a><a href="https://grabui.com/product/adfusion"
-                      class="work-card w-inline-block">
-                      <div class="work-image-block"><img
-                          src="images/67556ffb0a834d8433673447_work-img-02.avif" loading="lazy"
-                          sizes="(max-width: 479px) 100vw, (max-width: 767px) 96vw, (max-width: 991px) 94vw, 38vw"
-                          srcset="images/67556ffb0a834d8433673447_work-img-02-p-500.avif 500w, images/67556ffb0a834d8433673447_work-img-02.avif 720w"
-                          alt="Our work preview image." class="work-image"></div>
-                      <div class="work-card-text-content-block">
-                        <div class="work-card-top-block"><img
-                            src="images/674ebc672f257b9d0486f319_work-card-logo-02.svg"
-                            loading="lazy" alt="Clients company logo" class="work-card-logo-v2">
-                          <p class="text-opecity-80">We redesigned the DesignOrbit Agency app,
-                            improving functionality, navigation, and personalization for a more
-                            intuitive experience.</p>
-                        </div>
-                        <div class="work-info-block">
-                          <div class="work-info-item-block">
-                            <div>Client</div>
-                            <div>Autodesk</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                          <div class="work-info-item-block">
-                            <div>Role</div>
-                            <div>UI.UX / Branding</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                          <div class="work-info-item-block">
-                            <div>Date</div>
-                            <div>10 . 14 . 2024</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                          <div class="work-info-item-block">
-                            <div>Client Satisfied</div>
-                            <div>5/5</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                        </div>
-                        <div class="work-category-block">
-                          <div class="work-category-item">
-                            <div class="work-category-item-text">AI &amp; ML</div>
-                          </div>
-                          <div class="work-category-item">
-                            <div class="work-category-item-text">Illustration</div>
-                          </div>
-                          <div class="work-category-item">
-                            <div class="work-category-item-text">Consulting</div>
-                          </div>
-                        </div>
-                      </div>
-                    </a><a href="https://grabui.com/product/lumin" class="work-card w-inline-block">
-                      <div class="work-image-block"><img
-                          src="images/67556ffb002c67bac507ced9_work-img-03.avif" loading="lazy"
-                          alt="Our work preview image." class="work-image"></div>
-                      <div class="work-card-text-content-block">
-                        <div class="work-card-top-block"><img
-                            src="images/674ebc671f72bb95132463bb_work-card-logo-01.svg"
-                            loading="lazy" alt="Clients company logo" class="work-card-logo-v1">
-                          <p class="text-opecity-80">We worked closely with the CSS Design Awards
-                            team to create a fresh, modern brand identity that aligns with their
-                            vision and resonates with their target audience.</p>
-                        </div>
-                        <div class="work-info-block">
-                          <div class="work-info-item-block">
-                            <div>Client</div>
-                            <div>CSS Design Awards</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                          <div class="work-info-item-block">
-                            <div>Role</div>
-                            <div>UI.UX / Branding</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                          <div class="work-info-item-block">
-                            <div>Date</div>
-                            <div>10 . 14 . 2024</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                          <div class="work-info-item-block">
-                            <div>Client Satisfied</div>
-                            <div>4.9/5</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                        </div>
-                        <div class="work-category-block">
-                          <div class="work-category-item">
-                            <div class="work-category-item-text">Web Development</div>
-                          </div>
-                          <div class="work-category-item">
-                            <div class="work-category-item-text">AI &amp; ML</div>
-                          </div>
-                          <div class="work-category-item">
-                            <div class="work-category-item-text">Consulting</div>
-                          </div>
-                        </div>
-                      </div>
-                    </a><a href="https://grabui.com/product/eventistry"
-                      class="work-card w-inline-block">
-                      <div class="work-image-block"><img
-                          src="images/67556ffb3a12e162e517b382_work-img-04.avif" loading="lazy"
-                          alt="Our work preview image." class="work-image"></div>
-                      <div class="work-card-text-content-block">
-                        <div class="work-card-top-block"><img
-                            src="images/674ebc672f257b9d0486f319_work-card-logo-02.svg"
-                            loading="lazy" alt="Clients company logo" class="work-card-logo-v2">
-                          <p class="text-opecity-80">We enhanced the Design Agency app by
-                            redesigning the interface, streamlining navigation, and adding
-                            personalized features for a smoother user experience.</p>
-                        </div>
-                        <div class="work-info-block">
-                          <div class="work-info-item-block">
-                            <div>Client</div>
-                            <div>CSS Design Awards</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                          <div class="work-info-item-block">
-                            <div>Role</div>
-                            <div>UI.UX / Branding</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                          <div class="work-info-item-block">
-                            <div>Date</div>
-                            <div>10 . 14 . 2024</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                          <div class="work-info-item-block">
-                            <div>Client Satisfied</div>
-                            <div>5/5</div>
-                          </div>
-                          <div class="work-info-devider"></div>
-                        </div>
-                        <div class="work-category-block">
-                          <div class="work-category-item">
-                            <div class="work-category-item-text">Illustration</div>
-                          </div>
-                          <div class="work-category-item">
-                            <div class="work-category-item-text">Data Analytics</div>
-                          </div>
-                        </div>
-                      </div>
-                    </a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- <section id="Pricng" class="pricing">
-          <div class="container">
-            <div class="page-vertical-padding">
-              <div class="section-padding-large">
-                <div class="pricing-content-wrapper">
-                  <div class="section-top-block">
-                    <div class="section-caption">
-                      <div class="section-caption-text">Pricing</div>
-                    </div>
-                    <div class="pricing-title-block">
-                      <h2>Our pricing plans make getting started a breeze.</h2>
-                    </div>
-                  </div>
-                  <div class="pricing-cards-block">
-                    <div class="pricing-card">
-                      <div class="pricing-card-top-block">
-                        <h3 class="heading-style-h3-medium">Branding pro</h3>
-                        <div class="body-text-regular text-opecity-80">Building your brand's logo,
-                          visual identity, stationary, and merch.</div>
-                      </div>
-                      <div class="pricing-card-price-block">
-                        <div class="body-text-extra-large">$995/m</div>
-                        <div class="body-text-regular text-opecity-80">Pause or cancel anytime.
-                        </div>
-                      </div><a href="#" class="pricing-card-button w-button">Book a Call</a>
-                      <div class="pricing-card-list-block">
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb39ddced2d8d71730122_pricing-card-list-icon-dark.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Logo design & source code</div>
-                        </div>
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb39ddced2d8d71730122_pricing-card-list-icon-dark.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Brand visual identity</div>
-                        </div>
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb39ddced2d8d71730122_pricing-card-list-icon-dark.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Styleguide and use cases</div>
-                        </div>
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb39ddced2d8d71730122_pricing-card-list-icon-dark.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Merchandise design</div>
-                        </div>
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb39ddced2d8d71730122_pricing-card-list-icon-dark.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Stationary design</div>
-                        </div>
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb39ddced2d8d71730122_pricing-card-list-icon-dark.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Logo and visual identity</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div data-w-id="eda09819-a5cd-cdcb-81ce-23db25da0759" style="opacity:0"
-                      class="pricing-card-pro">
-                      <div class="pricing-card-top-block">
-                        <h3 class="heading-style-h3-medium">Branding pro</h3>
-                        <div class="body-text-regular text-opecity-80">World-class digital product
-                          using cutting-edge technology and latest tools.</div>
-                      </div>
-                      <div class="pricing-card-price-block">
-                        <div class="body-text-extra-large">$1,995/m</div>
-                        <div class="body-text-regular text-opecity-80">Pause or cancel anytime.
-                        </div>
-                      </div><a href="#" class="pricing-card-button w-button">Book a Call</a>
-                      <div class="pricing-card-list-block">
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb48a952e97697a48d12f_pricing-card-list-icon-light.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Logo design & source code</div>
-                        </div>
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb48a952e97697a48d12f_pricing-card-list-icon-light.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Sketching & wireframes</div>
-                        </div>
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb48a952e97697a48d12f_pricing-card-list-icon-light.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Styleguide and use cases</div>
-                        </div>
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb48a952e97697a48d12f_pricing-card-list-icon-light.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Framer development</div>
-                        </div>
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb48a952e97697a48d12f_pricing-card-list-icon-light.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Search optimization</div>
-                        </div>
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb48a952e97697a48d12f_pricing-card-list-icon-light.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Accessibility and testing</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="pricing-card">
-                      <div class="pricing-card-top-block">
-                        <h3 class="heading-style-h3-medium">Full Stack</h3>
-                        <div class="body-text-regular text-opecity-80">Everything you need to
-                          design, develop, and launch your digital product.</div>
-                      </div>
-                      <div class="pricing-card-price-block">
-                        <div class="body-text-extra-large">$2,995/m</div>
-                        <div class="body-text-regular text-opecity-80">Pause or cancel anytime.
-                        </div>
-                      </div><a href="#" class="pricing-card-button w-button">Book a Call</a>
-                      <div class="pricing-card-list-block">
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb39ddced2d8d71730122_pricing-card-list-icon-dark.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Logo design & source code</div>
-                        </div>
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb39ddced2d8d71730122_pricing-card-list-icon-dark.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>UI.UX design</div>
-                        </div>
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb39ddced2d8d71730122_pricing-card-list-icon-dark.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Styleguide and use cases</div>
-                        </div>
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb39ddced2d8d71730122_pricing-card-list-icon-dark.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Merchandise design</div>
-                        </div>
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb39ddced2d8d71730122_pricing-card-list-icon-dark.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Framer development</div>
-                        </div>
-                        <div class="pricing-card-list-item"><img
-                            src="images/674eb39ddced2d8d71730122_pricing-card-list-icon-dark.svg"
-                            loading="lazy" alt="Tick icon">
-                          <div>Logo and visual identity</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> -->
-        <!-- <section id="CTA" class="form">
-          <div class="container">
-            <div class="page-vertical-padding">
-              <div class="section-padding-large">
-                <div class="form-content-wrapper">
-                  <div data-w-id="6d59d714-5a33-5fd7-d933-d84fa928f54f" style="opacity:0"
-                    class="form-info-block">
-                    <div class="section-top-block">
-                      <div class="section-caption">
-                        <div class="section-caption-text">Company</div>
-                      </div>
-                      <h2>Have a Project Idea?</h2>
-                    </div>
-                    <div class="form-marquee-block">
-                      <div class="form-marquee-inner-block">
-                        <div class="form-marquee-item">
-                          <div class="text-opecity-70">AI &amp; ML</div>
-                        </div>
-                        <div class="form-marquee-item">
-                          <div class="text-opecity-70">Web &amp; Mobile</div>
-                        </div>
-                        <div class="form-marquee-item">
-                          <div class="text-opecity-70">Data Analytics</div>
-                        </div>
-                        <div class="form-marquee-item">
-                          <div class="text-opecity-70">Cloud Solutions</div>
-                        </div>
-                        <div class="form-marquee-item">
-                          <div class="text-opecity-70">DevOps</div>
-                        </div>
-                        <div class="form-marquee-item">
-                          <div class="text-opecity-70">Automation</div>
-                        </div>
-                        <div class="form-marquee-item">
-                          <div class="text-opecity-70">Consulting</div>
-                        </div>
-                      </div>
-                      <div class="form-marquee-inner-block">
-                        <div class="form-marquee-item">
-                          <div class="text-opecity-70">AI &amp; ML</div>
-                        </div>
-                        <div class="form-marquee-item">
-                          <div class="text-opecity-70">Web &amp; Mobile</div>
-                        </div>
-                        <div class="form-marquee-item">
-                          <div class="text-opecity-70">Data Analytics</div>
-                        </div>
-                        <div class="form-marquee-item">
-                          <div class="text-opecity-70">Cloud Solutions</div>
-                        </div>
-                        <div class="form-marquee-item">
-                          <div class="text-opecity-70">DevOps</div>
-                        </div>
-                        <div class="form-marquee-item">
-                          <div class="text-opecity-70">Automation</div>
-                        </div>
-                        <div class="form-marquee-item">
-                          <div class="text-opecity-70">Consulting</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div data-w-id="64b3b77d-7e1d-98ec-314c-e8f2f26909c0" style="opacity:0"
-                    class="contact-form-wrapper">
-                    <div class="contact-form w-form">
-                      <form id="wf-form-Contact-Form" name="wf-form-Contact-Form"
-                        data-name="Contact Form" method="get" class="contact-form-block"
-                        data-wf-page-id="6745b25f58afc09807f9d3e4"
-                        data-wf-element-id="10d1068d-04ca-02f7-0d7c-3cce814e7f1b"
-                        data-turnstile-sitekey="0x4AAAAAAAQTptj2So4dx43e"><input
-                          class="form-field w-input" maxlength="256" name="Full-Name"
-                          data-name="Full Name" placeholder="Full Name" type="text" id="Full-Name">
-                        <div class="form-field-wrapper"><input class="form-field w-input"
-                            maxlength="256" name="email" data-name="Email" placeholder="Email*"
-                            type="email" id="email" required=""><input class="form-field w-input"
-                            maxlength="256" name="Company-Name" data-name="Company Name"
-                            placeholder="Company Name" type="text" id="Company-Name"></div>
-                        <div class="form-field-wrapper"><select id="Service" name="Service"
-                            data-name="Service" class="form-field select-field w-select">
-                            <option value="">Service required</option>
-                            <option value="Web Development">Web Development</option>
-                            <option value="Mobile Development">Mobile Development</option>
-                            <option value="Full-Stack Solutions">Full-Stack Solutions</option>
-                            <option value="API Development">API Development</option>
-                            <option value="UI/UX Design">UI/UX Design</option>
-                            <option value="Cloud Integration">Cloud Integration</option>
-                            <option value="AI & ML Solutions">AI & ML Solutions</option>
-                            <option value="DevOps Automation">DevOps Automation</option>
-                          </select><select id="Budget" name="Budget" data-name="Budget" required=""
-                            class="form-field select-field w-select">
-                            <option value="">Project budget</option>
-                            <option value="₹6,000 - ₹10,000">₹6,000 - ₹10,000</option>
-                            <option value="₹10,000 - ₹15,000">₹10,000 - ₹15,000</option>
-                            <option value="₹15,000 - ₹20,000">₹15,000 - ₹20,000</option>
-                          </select></div><textarea id="Project-Details" name="Project-Details"
-                          maxlength="5000" data-name="Project Details" placeholder="Project details"
-                          class="form-field textarea w-input"></textarea><input type="submit"
-                          data-wait="Please wait..." class="submit-button w-button"
-                          value="Send Inquiry">
-                      </form>
-                      <div class="success-message w-form-done">
-                        <div>Thank you! Your submission has been received!</div>
-                      </div>
-                      <div class="error-message w-form-fail">
-                        <div>Oops! Something went wrong while submitting the form.</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> -->
         <section id="Review" class="review">
           <div class="container">
             <div class="page-vertical-padding">
@@ -1502,6 +1208,24 @@
       }
     }
   </style>
+  
+  <!-- Loading Animation JavaScript -->
+  <script>
+    // Hide loading screen when page is fully loaded
+    window.addEventListener('load', function() {
+      const loadingScreen = document.getElementById('loading-screen');
+      
+      // Add a small delay for better user experience
+      setTimeout(function() {
+        loadingScreen.style.opacity = '0';
+        
+        // Remove from DOM after transition completes
+        setTimeout(function() {
+          loadingScreen.style.display = 'none';
+        }, 500);
+      }, 800);
+    });
+  </script>
 </body>
 
 </html>
