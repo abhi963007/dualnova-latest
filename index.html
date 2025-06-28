@@ -145,9 +145,8 @@
           c instanceof DocumentTouch) && (n.className += t + "touch")
       }(window, document);
     </script>
-    <link href="images/67557b092eca5a31b7c63d39_favicon.jpg" rel="shortcut icon"
+    <link href="images/67557b092eca5a31b7c63d39_favicon.png" rel="shortcut icon"
       type="image/x-icon">
-    <link href="images/67557b45ba9317ab3b5c845a_webclip.jpg" rel="apple-touch-icon">
     <style>
       body {
         -webkit-font-smoothing: antialiased;
@@ -1224,6 +1223,52 @@
           loadingScreen.style.display = 'none';
         }, 500);
       }, 800);
+    });
+  </script>
+
+  <!-- Smooth Scrolling JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Apply scroll margin to all sections to account for fixed header
+      const sections = document.querySelectorAll('section[id]');
+      const navHeight = 100; // Default height for desktop
+      
+      // Set scroll-margin-top for all sections
+      sections.forEach(section => {
+        section.style.scrollMarginTop = navHeight + 'px';
+      });
+      
+      // Handle all anchor links for smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          // Only process if the href is not just "#" (empty anchor)
+          if(this.getAttribute('href') !== '#') {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if(targetElement) {
+              // Smooth scroll to target
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+              
+              // Update URL hash without jumping
+              history.pushState(null, null, targetId);
+            }
+          }
+        });
+      });
+      
+      // Adjust scroll margins on window resize for responsive design
+      window.addEventListener('resize', function() {
+        const newNavHeight = window.innerWidth <= 767 ? 70 : 100;
+        sections.forEach(section => {
+          section.style.scrollMarginTop = newNavHeight + 'px';
+        });
+      });
     });
   </script>
 </body>
