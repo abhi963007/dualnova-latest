@@ -2056,6 +2056,7 @@
         answerWrapper.style.opacity = '0';
 
         trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
           e.preventDefault();
           const isOpen = item.classList.contains('w--open');
 
@@ -2080,30 +2081,17 @@
 
             // open this item
             item.classList.add('w--open');
+            answerBlock.style.display = 'block';
             answerBlock.style.height = answerWrapper.scrollHeight + 'px';
-            answerWrapper.style.opacity = '1';
-            if (icon) icon.style.transform = 'rotate(45deg)';
-          }
-            // close other items
-            faqItems.forEach(other => {
-              if (other !== item) {
-                other.classList.remove('open');
-                const ob = other.querySelector('.faq-answer-block');
-                const ow = other.querySelector('.faq-answer-wrapper');
-                const oi = other.querySelector('.faq-icon');
-                if (ob) ob.style.height = '0px';
-                if (ow) ow.style.opacity = '0';
-                if (oi) oi.style.transform = 'rotate(0deg)';
+            // once transition ends set to auto for responsiveness
+            answerBlock.addEventListener('transitionend', function handler(){
+              if(item.classList.contains('w--open')){
+                answerBlock.style.height = 'auto';
               }
+              answerBlock.removeEventListener('transitionend', handler);
             });
-
-            answerBlock.style.height = answerWrapper.scrollHeight + 'px';
             answerWrapper.style.opacity = '1';
             if (icon) icon.style.transform = 'rotate(45deg)';
-          } else {
-            answerBlock.style.height = '0px';
-            answerWrapper.style.opacity = '0';
-            if (icon) icon.style.transform = 'rotate(0deg)';
           }
         });
       });
