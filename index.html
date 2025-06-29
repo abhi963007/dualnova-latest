@@ -1756,7 +1756,7 @@
                     <div class="contact-form">
                       <form id="google-enquiry-form" name="google-enquiry-form"
       method="post"
-      action="https://docs.google.com/forms/d/e/1FAIpQLSep6K-Wn6CeXo7Rxg5nyYJ_w_lxDCMIetfQbuo7Jjki9256Nw/formResponse"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSep6K-Wn6CeXo7Rxg5nyYJ_w_lxDCMIetfQbuo7Jjki9256Nw/formResponse?usp=pp_url"
       target="hidden_iframe"
       class="contact-form-block"
       data-name="Contact Form">
@@ -1787,8 +1787,17 @@
                          </div> <!-- end form-field-wrapper -->
                          <textarea id="Project-Details" name="entry.132039033" maxlength="5000" data-name="Project Details" placeholder="Project details" class="form-field textarea w-input"></textarea>
                          <input type="submit" data-wait="Please wait..." class="submit-button w-button" value="Send Enquiry">
+                       <div id="form-success" style="display:none; margin-top: 20px; color: #4CAF50; font-weight: 500;">
+                         Thank you! Your enquiry has been sent.
+                       </div>
                        </form>
                        <iframe name="hidden_iframe" style="display:none"></iframe>
+                       <script>
+                       document.getElementById('google-enquiry-form').addEventListener('submit', function() {
+                         document.getElementById('form-success').style.display = 'block';
+                         this.reset();
+                       });
+                       </script>
               </div>
             </div>
           </div>
