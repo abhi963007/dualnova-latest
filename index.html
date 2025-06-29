@@ -1786,39 +1786,60 @@
                        </div>
                        </form>
                        <script>
-                       document.getElementById('google-enquiry-form').addEventListener('submit', function(e) {
+                       document.getElementById('google-enquiry-form').addEventListener('submit', async function(e) {
                          e.preventDefault();
                          
                          const form = e.target;
-                         const formData = new FormData(form);
+                         const submitButton = form.querySelector('button[type="submit"]');
+                         const originalButtonText = submitButton.textContent;
                          
-                         // Add form data to URL parameters
-                         const url = 'https://docs.google.com/forms/d/e/1FAIpQLSep6K-Wn6CeXo7Rxg5nyYJ_w_lxDCMIetfQbuo7Jjki9256Nw/formResponse';
-                         const params = new URLSearchParams();
-                         
-                         // Add all form fields to params
-                         formData.forEach((value, key) => {
-                           params.append(key, value);
-                         });
-                         
-                         // Submit to Google Forms
-                         fetch(url, {
-                           method: 'POST',
-                           mode: 'no-cors',
-                           headers: {
-                             'Content-Type': 'application/x-www-form-urlencoded',
-                           },
-                           body: params.toString()
-                         })
-                         .then(() => {
-                           // Show success message
-                           document.getElementById('form-success').style.display = 'block';
-                           form.reset();
-                         })
-                         .catch(error => {
+                         try {
+                           // Disable button and show loading
+                           submitButton.disabled = true;
+                           submitButton.textContent = 'Sending...';
+                           
+                           // Create form data
+                           const formData = new FormData(form);
+                           const formObject = {};
+                           formData.forEach((value, key) => {
+                             formObject[key] = value;
+                           });
+                           
+                           // Using a proxy server to submit to Google Forms
+                           const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+                           const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSep6K-Wn6CeXo7Rxg5nyYJ_w_lxDCMIetfQbuo7Jjki9256Nw/formResponse';
+                           
+                           // Submit to Google Forms via proxy
+                           const response = await fetch(proxyUrl + formUrl, {
+                             method: 'POST',
+                             mode: 'cors',
+                             headers: {
+                               'Content-Type': 'application/x-www-form-urlencoded',
+                               'X-Requested-With': 'XMLHttpRequest'
+                             },
+                             body: new URLSearchParams(formObject).toString()
+                           });
+                           
+                           if (response.ok) {
+                             // Show success message
+                             document.getElementById('form-success').style.display = 'block';
+                             form.reset();
+                             
+                             // Hide success message after 5 seconds
+                             setTimeout(() => {
+                               document.getElementById('form-success').style.display = 'none';
+                             }, 5000);
+                           } else {
+                             throw new Error('Form submission failed');
+                           }
+                         } catch (error) {
                            console.error('Error:', error);
-                           alert('There was an error sending your enquiry. Please try again.');
-                         });
+                           alert('There was an error sending your enquiry. Please try again later.');
+                         } finally {
+                           // Re-enable button
+                           submitButton.disabled = false;
+                           submitButton.textContent = originalButtonText;
+                         }
                        });
                        </script>
               </div>
