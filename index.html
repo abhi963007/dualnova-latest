@@ -1754,13 +1754,7 @@
                   </div>
                   <div data-w-id="64b3b77d-7e1d-98ec-314c-e8f2f26909c0" style="opacity:0" class="contact-form-wrapper">
                     <div class="contact-form">
-                      <form id="google-enquiry-form" name="google-enquiry-form"
-      method="post"
-      action="https://docs.google.com/forms/d/e/1FAIpQLSep6K-Wn6CeXo7Rxg5nyYJ_w_lxDCMIetfQbuo7Jjki9256Nw/formResponse?usp=pp_url"
-      target="hidden_iframe"
-      class="contact-form-block"
-      data-name="Contact Form">
-      <input type="hidden" name="submit" value="Submit">
+                      <form id="google-enquiry-form" class="contact-form-block" data-name="Contact Form">
                         <input class="form-field w-input" maxlength="256" name="entry.1658830937" data-name="Full Name" placeholder="Full Name" type="text" id="Full-Name" required>
                         <div class="form-field-wrapper">
                           <input class="form-field w-input" maxlength="256" name="entry.1740894873" data-name="Email" placeholder="Email*" type="email" id="email" required>
@@ -1786,16 +1780,45 @@
                            </select>
                          </div> <!-- end form-field-wrapper -->
                          <textarea id="Project-Details" name="entry.132039033" maxlength="5000" data-name="Project Details" placeholder="Project details" class="form-field textarea w-input"></textarea>
-                         <input type="submit" data-wait="Please wait..." class="submit-button w-button" value="Send Enquiry">
+                         <button type="submit" class="submit-button w-button">Send Enquiry</button>
                        <div id="form-success" style="display:none; margin-top: 20px; color: #4CAF50; font-weight: 500;">
                          Thank you! Your enquiry has been sent.
                        </div>
                        </form>
-                       <iframe name="hidden_iframe" style="display:none"></iframe>
                        <script>
-                       document.getElementById('google-enquiry-form').addEventListener('submit', function() {
-                         document.getElementById('form-success').style.display = 'block';
-                         this.reset();
+                       document.getElementById('google-enquiry-form').addEventListener('submit', function(e) {
+                         e.preventDefault();
+                         
+                         const form = e.target;
+                         const formData = new FormData(form);
+                         
+                         // Add form data to URL parameters
+                         const url = 'https://docs.google.com/forms/d/e/1FAIpQLSep6K-Wn6CeXo7Rxg5nyYJ_w_lxDCMIetfQbuo7Jjki9256Nw/formResponse';
+                         const params = new URLSearchParams();
+                         
+                         // Add all form fields to params
+                         formData.forEach((value, key) => {
+                           params.append(key, value);
+                         });
+                         
+                         // Submit to Google Forms
+                         fetch(url, {
+                           method: 'POST',
+                           mode: 'no-cors',
+                           headers: {
+                             'Content-Type': 'application/x-www-form-urlencoded',
+                           },
+                           body: params.toString()
+                         })
+                         .then(() => {
+                           // Show success message
+                           document.getElementById('form-success').style.display = 'block';
+                           form.reset();
+                         })
+                         .catch(error => {
+                           console.error('Error:', error);
+                           alert('There was an error sending your enquiry. Please try again.');
+                         });
                        });
                        </script>
               </div>
