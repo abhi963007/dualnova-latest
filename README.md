@@ -53,7 +53,7 @@ Dual Nova Lab is a digital solutions company established in 2020 in Kochi, Keral
 
 ## 🌐 Website
 
-Visit our website: [Dual Nova Lab](https://dualnova-latest.netlify.app/)
+Visit our website: [Dual Nova Lab](https://dualnova.shop/)
 
 ## 📝 License
 
